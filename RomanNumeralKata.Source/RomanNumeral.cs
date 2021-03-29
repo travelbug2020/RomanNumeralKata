@@ -10,6 +10,7 @@ namespace RomanNumeralKata.Source
             {1, "I"},
             {4, "IV"},
             {5, "V"},
+            {9, "IX"},
             {10, "X"},
             {50, "L"},
             {100, "C"},
@@ -73,10 +74,17 @@ namespace RomanNumeralKata.Source
                 {
                     var timesGoingRound = 1;
                     roman += _arabicToRoman[closestBiggestArabic];
-                    while (timesGoingRound <= remainder)
+                    if (_arabicToRoman.ContainsKey(remainder))
                     {
-                        roman += _arabicToRoman[1];
-                        timesGoingRound++;
+                        roman += _arabicToRoman[remainder];
+                    }
+                    else
+                    {
+                        while (timesGoingRound <= remainder)
+                        {
+                            roman += _arabicToRoman[1];
+                            timesGoingRound++;
+                        }
                     }
 
                     return roman;
