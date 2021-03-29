@@ -28,79 +28,17 @@ namespace RomanNumeralKata.Source
                 return roman;
             }
 
-            if (arabic <= 3)
+            foreach (var arabicKey in _arabicToRoman.Keys)
             {
-                var closestBiggestArabic = 1;
-                var remainder = arabic - closestBiggestArabic;
-                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
+                var remainder = arabic - arabicKey; 
+                while (remainder >= 0)
                 {
-                    var timesGoingRound = 1;
-                    roman += _arabicToRoman[closestBiggestArabic];
-                    while (timesGoingRound <= remainder)
-                    {
-                        roman += _arabicToRoman[1];
-                        timesGoingRound++;
-                    }
-                    return roman;
-                }
-
-            }
-
-
-            if (arabic <= 9)
-            {
-                var closestBiggestArabic = 5;
-                var remainder = arabic - closestBiggestArabic;
-                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
-                {
-                    roman += _arabicToRoman[closestBiggestArabic];
-                    while (remainder > 0)
-                    {
-                        foreach (var arabicKey in _arabicToRoman.Keys)
-                        {
-                            if (remainder >= arabicKey)
-                            {
-                                roman += _arabicToRoman[arabicKey];
-                                remainder -= arabicKey;
-                            }
-                        }
-
-                    }
-
-                    return roman;
+                    roman += _arabicToRoman[arabicKey];
+                    remainder -= arabicKey;
+                    arabic -= arabicKey;
                 }
             }
-
-            if (arabic >= 10)
-            {
-                var closestBiggestArabic = 10;
-                var remainder = arabic - closestBiggestArabic;
-
-                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
-                {
-                    roman += _arabicToRoman[closestBiggestArabic];
-                    while (remainder > 0) 
-                    {
-                        foreach (var arabicKey in _arabicToRoman.Keys)
-                        {
-                            if (remainder >= arabicKey)
-                            {
-                                roman += _arabicToRoman[arabicKey];
-                                remainder -= arabicKey;
-                            }
-                        }
-
-                    }
-                   
-
-                    return roman;
-                }
-            }
-           
-
-
             return roman;
-
         }
     }
 }
