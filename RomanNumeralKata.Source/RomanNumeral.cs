@@ -22,12 +22,6 @@ namespace RomanNumeralKata.Source
         {
             var roman = string.Empty;
 
-            if (_arabicToRoman.ContainsKey(arabic))
-            {
-                roman += _arabicToRoman[arabic];
-                return roman;
-            }
-
             foreach (var arabicKey in _arabicToRoman.Keys)
             {
                 var remainder = arabic - arabicKey; 
