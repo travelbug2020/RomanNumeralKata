@@ -53,12 +53,18 @@ namespace RomanNumeralKata.Source
                 var remainder = arabic - closestBiggestArabic;
                 if (_arabicToRoman.ContainsKey(closestBiggestArabic))
                 {
-                    var timesGoingRound = 1;
                     roman += _arabicToRoman[closestBiggestArabic];
-                    while (timesGoingRound <= remainder)
+                    while (remainder > 0)
                     {
-                        roman += _arabicToRoman[1];
-                        timesGoingRound++;
+                        foreach (var arabicKey in _arabicToRoman.Keys)
+                        {
+                            if (remainder >= arabicKey)
+                            {
+                                roman += _arabicToRoman[arabicKey];
+                                remainder -= arabicKey;
+                            }
+                        }
+
                     }
 
                     return roman;
@@ -72,7 +78,6 @@ namespace RomanNumeralKata.Source
 
                 if (_arabicToRoman.ContainsKey(closestBiggestArabic))
                 {
-                    var timesGoingRound = 1;
                     roman += _arabicToRoman[closestBiggestArabic];
                     while (remainder > 0) 
                     {
