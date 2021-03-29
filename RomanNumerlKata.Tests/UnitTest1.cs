@@ -19,6 +19,8 @@ namespace RomanNumerlKata.Tests
         [TestCase(12, "XII")]
         [TestCase(13, "XIII")]
         [TestCase(14, "XIV")]
+        [TestCase(15, "XV")]
+        [TestCase(16, "XVI")]
         [TestCase(500,"D")]
         [TestCase(50,"L")]
         [TestCase(100,"C")]
