@@ -18,11 +18,6 @@ namespace RomanNumeralKata.Source
 
         public string ToRoman(int arabic)
         {
-            if (arabic == 11)
-            {
-                return "XI";
-            }
-
             var roman = string.Empty;
 
             if (_arabicToRoman.ContainsKey(arabic))
@@ -31,32 +26,64 @@ namespace RomanNumeralKata.Source
                 return roman;
             }
 
-            var timesGoingRound = 1;
             if (arabic <= 3)
             {
-                while (timesGoingRound <= arabic)
+                var closestBiggestArabic = 1;
+                var remainder = arabic - closestBiggestArabic;
+                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
                 {
-                    roman += _arabicToRoman[1];
-                    timesGoingRound++;
+                    var timesGoingRound = 1;
+                    roman += _arabicToRoman[closestBiggestArabic];
+                    while (timesGoingRound <= remainder)
+                    {
+                        roman += _arabicToRoman[1];
+                        timesGoingRound++;
+                    }
+                    return roman;
                 }
 
-                return roman;
             }
 
-            var closestMultiple = 5;
-            var remainder = arabic % closestMultiple;
-            if (_arabicToRoman.ContainsKey(closestMultiple))
+
+            if (arabic <= 9)
             {
-                roman += _arabicToRoman[closestMultiple];
-                while (timesGoingRound <= remainder)
+                var closestBiggestArabic = 5;
+                var remainder = arabic - closestBiggestArabic;
+                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
                 {
-                    roman += _arabicToRoman[1];
-                    timesGoingRound++;
-                }
+                    var timesGoingRound = 1;
+                    roman += _arabicToRoman[closestBiggestArabic];
+                    while (timesGoingRound <= remainder)
+                    {
+                        roman += _arabicToRoman[1];
+                        timesGoingRound++;
+                    }
 
-                return roman;
+                    return roman;
+                }
             }
-            
+
+            if (arabic >= 10)
+            {
+                var closestBiggestArabic = 10;
+                var remainder = arabic - closestBiggestArabic;
+
+                if (_arabicToRoman.ContainsKey(closestBiggestArabic))
+                {
+                    var timesGoingRound = 1;
+                    roman += _arabicToRoman[closestBiggestArabic];
+                    while (timesGoingRound <= remainder)
+                    {
+                        roman += _arabicToRoman[1];
+                        timesGoingRound++;
+                    }
+
+                    return roman;
+                }
+            }
+           
+
+
             return roman;
 
         }
