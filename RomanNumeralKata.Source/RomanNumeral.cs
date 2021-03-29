@@ -8,6 +8,7 @@ namespace RomanNumeralKata.Source
         private readonly Dictionary<int, string> _arabicToRoman = new Dictionary<int, string>
         {
             {1, "I"},
+            {4, "IV"},
             {5, "V"},
             {10, "X"},
             {50, "L"},
