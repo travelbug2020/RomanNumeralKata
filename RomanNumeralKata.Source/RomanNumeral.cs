@@ -20,8 +20,7 @@ namespace RomanNumeralKata.Source
 
         public string ToRoman(int arabic)
         {
-            var roman = string.Empty;
-
+            var roman = String.Empty;
             foreach (var arabicKey in _arabicToRoman.Keys)
             {
                 var remainder = arabic - arabicKey; 
